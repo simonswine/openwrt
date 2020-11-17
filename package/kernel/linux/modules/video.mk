@@ -386,6 +386,21 @@ endef
 
 $(eval $(call KernelPackage,drm-radeon))
 
+define KernelPackage/drm-panfrost
+  SUBMENU:=$(VIDEO_MENU)
+  TITLE:=Radeon DRM support
+  DEPENDS:=@TARGET_rockchip
+  KCONFIG:=CONFIG_DRM_PANFROST
+  FILES:=$(LINUX_DIR)/drivers/gpu/drm/panfrost/panfrost.ko
+  AUTOLOAD:=$(call AutoProbe,panfrost)
+endef
+
+define KernelPackage/drm-panfrost/description
+  Direct Rendering Manager (DRM) support for Mali Midgard and Bifrost GPUs
+endef
+
+$(eval $(call KernelPackage,drm-panfrost))
+
 #
 # Video Capture
 #
